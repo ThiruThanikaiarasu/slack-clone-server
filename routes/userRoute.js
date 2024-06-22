@@ -3,7 +3,14 @@ const router = express.Router()
 
 const { check } = require('express-validator')
 const { signup, login } = require('../controllers/authController')
-const { createANewWorkspace } = require('../controllers/userController')
+const { createANewWorkspace, authenticateUser } = require('../controllers/userController')
+const { verifyUser } = require('../middleware/verify')
+
+router.get(
+    '/authenticate',
+    verifyUser,
+    authenticateUser
+)
 
 router.post(
     '/signup',
@@ -50,6 +57,8 @@ router.post(
         .withMessage('First name is a mandatory field')
         .trim()
         .escape(),
+
+    verifyUser,
 
     createANewWorkspace
 )

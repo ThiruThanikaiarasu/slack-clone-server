@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema(
             default: 'user',
         },
         workspace: {
-            type: [String]
+            type: [mongoose.Schema.Types.ObjectId]
         }
     }, 
     {

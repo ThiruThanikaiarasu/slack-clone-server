@@ -3,7 +3,6 @@ const userModel = require('../models/userModel')
 const bcrypt = require('bcryptjs')
 
 const signup = async (request, response) => {
-    console.log(request.body)
     const { email, password } = request.body
     try{
         const existingUser = await userModel.findOne({ email })
