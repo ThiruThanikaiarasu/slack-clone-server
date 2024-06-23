@@ -3,7 +3,7 @@ const router = express.Router()
 
 const { check } = require('express-validator')
 const { signup, login } = require('../controllers/authController')
-const { createANewWorkspace, authenticateUser } = require('../controllers/userController')
+const { createANewWorkspace, authenticateUser, getAllChannelDetails, getAllWorkspaces, getWorkspace, createANewChannel, addAMemberToGroup } = require('../controllers/userController')
 const { verifyUser } = require('../middleware/verify')
 
 router.get(
@@ -61,6 +61,44 @@ router.post(
     verifyUser,
 
     createANewWorkspace
+)
+
+router.get(
+    '/workspaces',
+
+    verifyUser,
+    getAllWorkspaces
+)
+
+router.post(
+    '/get-workspace',
+
+    verifyUser,
+    getWorkspace
+)
+
+router.get(
+    '/dashboard',
+
+    verifyUser,
+
+    getAllChannelDetails
+)
+
+router.post(
+    '/new-channel',
+
+    verifyUser,
+
+    createANewChannel
+)
+
+router.post(
+    '/addGroup',
+
+    verifyUser,
+
+    addAMemberToGroup
 )
 
 module.exports = router
